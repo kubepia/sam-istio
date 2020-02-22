@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: backend # just name for virtualservice
+spec:
+  hosts:
+  - backend.sam.svc.cluster.local # service name to call
+  http:
+  - match:
+    - headers:
+        membership:
+          exact: vip
+    route:
+    - destination:
+        host: backend.sam.svc.cluster.local
+        subset: v2
+  - route:
+    - destination:
+        host: backend.sam.svc.cluster.local # service name to call
+        subset: v1 # name for subset name

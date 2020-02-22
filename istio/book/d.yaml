@@ -1,0 +1,19 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: reviews-dr # just for destination rule
+spec:
+  host: reviews # service name to call
+  subsets:
+  - name: reviews-v1
+    labels: # label to deployment selector
+      version: v1
+  - name: reviews-v2
+    labels:
+      version: v2
+  - name: reviews-v3
+    labels:
+      version: v3
+---
+

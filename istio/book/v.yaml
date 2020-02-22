@@ -1,0 +1,52 @@
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: productpage
+# spec:
+#   hosts:
+#   - productpage
+#   http:
+#   - route:
+#     - destination:
+#         host: productpage
+#         subset: v1
+# ---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: reviews-vs # just name for virtualservice
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews # service name to call
+        subset: reviews-v1 # name for subset name
+---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: ratings
+# spec:
+#   hosts:
+#   - ratings
+#   http:
+#   - route:
+#     - destination:
+#         host: ratings
+#         subset: v1
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: details
+# spec:
+#   hosts:
+#   - details
+#   http:
+#   - route:
+#     - destination:
+#         host: details
+#         subset: v1
+# ---
